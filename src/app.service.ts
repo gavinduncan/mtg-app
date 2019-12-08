@@ -8,6 +8,7 @@ export class AppService {
   cards: [Card] = [
     { id: 1, name: 'chickenbutt' }
   ];
+  
   getHello(): string {
     return 'Hello World!';
   }
@@ -15,5 +16,9 @@ export class AppService {
   getAllCards(): [Card] {
     // TODO: switch to actual database
     return this.cards;
+  }
+
+  postOne(theCardThatGotPosted: Card) {
+    return this.cards.push(theCardThatGotPosted);
   }
 }
