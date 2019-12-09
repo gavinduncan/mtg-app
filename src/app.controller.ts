@@ -1,4 +1,4 @@
-import { Controller, Get, Body, Post } from '@nestjs/common';
+import { Controller, Get, Body, Post, Param, Delete } from '@nestjs/common';
 import { AppService } from './app.service';
 // we need to import card to this controller so it is defined
 import { Card } from './card.interface';
@@ -13,7 +13,7 @@ export class AppController {
   }
 
   @Get('cards')
-  getCards(): [Card] {
+  getCards(): Card[] {
     return this.appService.getAllCards();
   }
 
@@ -23,4 +23,11 @@ export class AppController {
     this.appService.postOne(card);
     return card;
   }
-}
+  
+  @Delete('cards/:id')
+  deleteCard(@Param() params: string) {
+    console.log(params['id']);
+    return this.appService.deleteOne(params['id']);
+  }
+
+} // end of controller class
